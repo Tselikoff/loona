@@ -51,6 +51,8 @@ RUN set -eux; \
     tofu version
 
 WORKDIR /app
+# requirements.txt brings ansible-pylibssh and paramiko: network_cli
+# (RouterOS, Cisco IOS) talks SSH through them, not through the ssh binary.
 COPY requirements.txt .
 RUN pip install -r requirements.txt "${ANSIBLE_PACKAGE}"
 
